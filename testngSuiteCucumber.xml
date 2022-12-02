@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="CucumberSuite" >
+
+
+    <test name = "TestOnVariousBrowsersCucumber" preserve-order="true">
+        <parameter name = "BrowserType" value = "ch"/>
+        <parameter name = "baseURL" value = "https://reqres.in/"/>
+        <!--DONT FORGIT TO CHANGE THE NEW REGISTRATION MAIL FROM testngSuite.xml file -->
+        <parameter name = "registrationMail" value = "ahmed.gamal300@yahoo.com"/>
+
+
+        <parameter name = "DataSizeRow" value="1"/>
+        <parameter name = "DataSizeCol" value = "2"/>
+        <parameter name = "fileExtension" value = ".xlsx"/>
+        <parameter name = "fileName" value = "Config"/>
+
+        <parameter name = "DataSizeRow_2" value="1"/>
+        <parameter name = "DataSizeCol_2" value = "12"/>
+        <parameter name = "fileExtension_2" value = ".xlsx"/>
+        <parameter name = "fileName_2" value = "config2"/>
+
+        <classes>
+            <class name = "Runner.TestRunnerAPI"/>
+        </classes>
+    </test> <!-- TestOnVariousBrowser-->
+
+
+</suite> <!-- Cross Browser Testing -->

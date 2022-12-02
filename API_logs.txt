@@ -1,0 +1,37 @@
+Request method:	POST
+Request URI:	https://reqres.in/api/users
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json; charset=UTF-8
+Cookies:		<none>
+Multiparts:		<none>
+Body:
+{
+    "name": "kaka",
+    "job": "KAKA land owner"
+}
+HTTP/1.1 201 Created
+Date: Fri, 02 Dec 2022 03:02:59 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 89
+Connection: keep-alive
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Etag: W/"59-ztnIdTgD5CUr49vkW5qa5Me81bg"
+Via: 1.1 vegur
+CF-Cache-Status: DYNAMIC
+Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Tyo4yKSXYzHx4Ekk2mww8u91JLSVw3kVyoKAlhqPToMi3KuhWXiexCv6l7o3TuUxyhGVM3spkuNNLpUY4pGxHOIR1aoYPgxZw0RR%2Bim4iqX%2BYbw3XUeJM%2BhpMg%3D%3D"}],"group":"cf-nel","max_age":604800}
+NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+Server: cloudflare
+CF-RAY: 7730d3adbdf00c51-MRS
+
+{
+    "name": "kaka",
+    "job": "KAKA land owner",
+    "id": "896",
+    "createdAt": "2022-12-02T03:02:59.528Z"
+}
