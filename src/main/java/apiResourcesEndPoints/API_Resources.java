@@ -1,5 +1,11 @@
 package apiResourcesEndPoints;
 
+import io.restassured.RestAssured;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public enum API_Resources {
     USERS("api/users"),
     SPECIFIC_USERS("api/users/{id}"),
@@ -19,16 +25,6 @@ public enum API_Resources {
     FORMS("/api/Forms"),
     If_There_Is_Extra_Resources("");
 
-    private String resource;
-    //constructor of enum
-    API_Resources (String resource){
-        this.resource=resource;
-    }
-
-    public String getResource(){
-        return resource;
-    }
-
-
+    private final String endPoint;
 }
 

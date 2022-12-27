@@ -4,6 +4,8 @@ import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.either;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 
@@ -66,5 +68,20 @@ public class MatchersConverter {
 
     private MatchersConverter() {
         throw new IllegalStateException("Utility class");
+    }
+
+
+    static boolean isSorted(List<Long> testedList) {
+        return isSorted(testedList, testedList.size());
+    }
+
+    private static boolean isSorted(List<Long> testedList, int index) {
+        if (index < 2) {
+            return true;
+        } else if (testedList.get(index - 2).compareTo(testedList.get(index - 1)) > 0) {
+            return false;
+        } else {
+            return isSorted(testedList, index - 1);
+        }
     }
 }

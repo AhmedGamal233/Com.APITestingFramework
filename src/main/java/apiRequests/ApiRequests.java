@@ -14,18 +14,18 @@ public class ApiRequests {
 
     public Response RestGetAllUsersRequest(int page)
     {
-       return ApiActions.RequestWithQueryParameter(reqSpec,"page",page,Method.GET, valueOf(API_Resources.USERS.getResource()));
+       return ApiActions.RequestWithQueryParameter(reqSpec,"page",page,Method.GET, API_Resources.USERS.getEndPoint());
     }
 
     public Response createUser(Object body)
     {
 
-        return ApiActions.PostRequest(reqSpec,body,Method.POST, valueOf(API_Resources.USERS.getResource()));
+        return ApiActions.PostRequest(reqSpec,body,Method.POST, API_Resources.USERS.getEndPoint());
     }
     public Response updateUser(Object body,String id)
     {
 
-        return ApiActions.PutRequest(reqSpec,body,"id",id,Method.PUT, valueOf(API_Resources.SPECIFIC_USERS.getResource()));
+        return ApiActions.PutRequest(reqSpec,body,"id",id,Method.PUT,API_Resources.SPECIFIC_USERS.getEndPoint());
     }
 
 }
