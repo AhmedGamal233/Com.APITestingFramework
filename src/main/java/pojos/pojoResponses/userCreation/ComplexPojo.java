@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class AccessoriesEntityModel {
+public class ComplexPojo {
     private List<AccessoryModel> accessories;
 
     @Data
