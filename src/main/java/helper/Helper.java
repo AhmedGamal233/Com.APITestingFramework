@@ -9,7 +9,6 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import pojos.pojoRequests.Accounts.SignIn;
 
 import java.io.*;
 import java.util.*;
@@ -270,16 +269,16 @@ public class Helper {
 		return result;
 	}
 
-	public SignIn getRequestParams(Map<String, String> paramsMap) {
-		Map<String, String> defaultMap = new HashMap<>();
-		ObjectMapper mapper = new ObjectMapper();
-		defaultMap.put("", "");
-
-		//overwrite with values from params map
-		defaultMap.putAll(paramsMap);
-		defaultMap.entrySet().removeIf(values -> values.getValue() == null || "null".equalsIgnoreCase(values.getValue()) || values.getValue().isEmpty());
-
-		return mapper.convertValue(defaultMap, SignIn.class); //sign in is example
-	}
+//	public SignIn getRequestParams(Map<String, String> paramsMap) {
+//		Map<String, String> defaultMap = new HashMap<>();
+//		ObjectMapper mapper = new ObjectMapper();
+//		defaultMap.put("", "");
+//
+//		//overwrite with values from params map
+//		defaultMap.putAll(paramsMap);
+//		defaultMap.entrySet().removeIf(values -> values.getValue() == null || "null".equalsIgnoreCase(values.getValue()) || values.getValue().isEmpty());
+//
+//		return mapper.convertValue(defaultMap, SignIn.class); //sign in is example
+//	}
 
 }

@@ -31,7 +31,7 @@ public class ApiBaseTest {
     protected static  RequestSpecification requestSpecificationBuilder;
     protected static  RequestSpecification requestSpecification;
 
-    protected ObjectMapper objectMapper =new ObjectMapper();
+    protected static ObjectMapper objectMapper =new ObjectMapper();
     public static CookieFilter filter = new CookieFilter();
 
     public static Helper helper;
