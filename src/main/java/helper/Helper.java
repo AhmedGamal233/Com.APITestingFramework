@@ -9,6 +9,7 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import pojos.pojoRequests.Accounts.SignIn;
 
 import java.io.*;
 import java.util.*;
@@ -23,7 +24,7 @@ import static logging.LoggingHandling.logger;
  */
 
 public class Helper {
-    private static int DataRow ;
+	private static int DataRow ;
 	private static int DataCol ;
 	private static Object[][] data;
 
@@ -78,7 +79,7 @@ public class Helper {
 		if (fileExtension.equalsIgnoreCase(".properties") && fileName.equalsIgnoreCase(fileName)) {
 			String filePath = "Configs/Data/"+fileName + fileExtension;
 			try {
-			data = readFromPropertyFile(filePath);
+				data = readFromPropertyFile(filePath);
 			} catch (Exception e) {
 				e.printStackTrace();
 				logger.info("Error");
@@ -96,7 +97,7 @@ public class Helper {
 				System.out.println("Please Check your file name or file extension ");
 			}
 		} else if (fileExtension.equalsIgnoreCase(".csv") && fileName.equalsIgnoreCase(fileName)) {
-		String filePath = "Configs/Data/"+fileName + fileExtension;
+			String filePath = "Configs/Data/"+fileName + fileExtension;
 			try {
 				data = readFromCSVFile(filePath);
 			} catch (IOException e) {
@@ -184,8 +185,8 @@ public class Helper {
 
 
 
-					listOfValues.add(value);
-					arrayExcelData[i][j] = listOfValues.get(j);
+				listOfValues.add(value);
+				arrayExcelData[i][j] = listOfValues.get(j);
 
 				System.out.println(listOfValues.get(j));
 			}
@@ -207,7 +208,7 @@ public class Helper {
 		BufferedReader br = new BufferedReader(new FileReader(filepath));
 		while ((csvCell = br.readLine()) != null)   //returns a Boolean value
 		{
-			 values = csvCell.split(",");// use comma as separator
+			values = csvCell.split(",");// use comma as separator
 
 		}
 
@@ -269,16 +270,16 @@ public class Helper {
 		return result;
 	}
 
-//	public SignIn getRequestParams(Map<String, String> paramsMap) {
-//		Map<String, String> defaultMap = new HashMap<>();
-//		ObjectMapper mapper = new ObjectMapper();
-//		defaultMap.put("", "");
-//
-//		//overwrite with values from params map
-//		defaultMap.putAll(paramsMap);
-//		defaultMap.entrySet().removeIf(values -> values.getValue() == null || "null".equalsIgnoreCase(values.getValue()) || values.getValue().isEmpty());
-//
-//		return mapper.convertValue(defaultMap, SignIn.class); //sign in is example
-//	}
+	public SignIn getRequestParams(Map<String, String> paramsMap) {
+		Map<String, String> defaultMap = new HashMap<>();
+		ObjectMapper mapper = new ObjectMapper();
+		defaultMap.put("", "");
+
+		//overwrite with values from params map
+		defaultMap.putAll(paramsMap);
+		defaultMap.entrySet().removeIf(values -> values.getValue() == null || "null".equalsIgnoreCase(values.getValue()) || values.getValue().isEmpty());
+
+		return mapper.convertValue(defaultMap, SignIn.class); //sign in is example
+	}
 
 }
