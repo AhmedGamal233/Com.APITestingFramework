@@ -1,6 +1,9 @@
 package stepDefinition;
 
 import apiRequests.ApiRequests;
+import apiRequests.Authentication.AuthApis;
+import apiRequests.userContent.userNoteCategories.UserNoteCategoriesRequests;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import helper.Helper;
 import io.cucumber.java.Before;
@@ -11,11 +14,15 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import lombok.SneakyThrows;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.BeforeClass;
+import pojos.pojoRequests.Accounts.SignIn;
+import pojos.pojoResponses.AccountsRes.SignInRes;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -25,13 +32,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
+import static pojos.pojoResponses.AccountsRes.SignInRes.accessToken;
+
 @Slf4j
 public class ApiBaseTest {
     protected static ApiRequests requests;
+    protected static AuthApis authApis;
+    protected static UserNoteCategoriesRequests userNoteCategoriesRequests;
     protected static  RequestSpecification requestSpecificationBuilder;
     protected static  RequestSpecification requestSpecification;
+    protected static SignIn signIn;
+    protected static SignInRes signInRes;
 
-    protected static ObjectMapper objectMapper =new ObjectMapper();
+    public static ObjectMapper objectMapper =new ObjectMapper();
     public static CookieFilter filter = new CookieFilter();
 
     public static Helper helper;
@@ -63,7 +76,21 @@ public class ApiBaseTest {
             requestSpecification = given().relaxedHTTPSValidation().log().all().spec(requestSpecificationBuilder);
         }
         requests=new ApiRequests(requestSpecification);
-        helper =new Helper();
+        authApis = new AuthApis(requestSpecification);
+        userNoteCategoriesRequests = new UserNoteCategoriesRequests(requestSpecification);
+        helper = new Helper();
+    }
+    @SneakyThrows
+    public static void generateToken(String username,String password,String DeviceServiceId) {
+        signIn=new SignIn();
+        signIn.setUsername(username);
+        signIn.setPassword(password);
+        signIn.setDeviceServiceId(DeviceServiceId);
+        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        Response response=authApis.signIn(objectMapper.writeValueAsString(signIn));
+        helper.setLatestResponse(response);
+        signInRes= objectMapper.readValue(helper.getLatestResponse().prettyPrint(), SignInRes.class);
+        accessToken =signInRes.getToken();
     }
 
 

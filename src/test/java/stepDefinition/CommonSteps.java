@@ -1,11 +1,13 @@
 package stepDefinition;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.response.Response;
+import pojos.pojoRequests.Accounts.SignIn;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,9 +17,17 @@ import static helper.Helper.performValidations;
 import static java.util.Arrays.asList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static stepDefinition.ApiBaseTest.helper;
+import static stepDefinition.ApiBaseTest.*;
 
 public class CommonSteps {
+    @Given("i generate user tokens")
+    public void iGenerateUserTokens(DataTable dataTable) {
+        Map<String, String> credentialsMap =new HashMap<>();
+        credentialsMap.putAll(dataTable.asMap(String.class, String.class));
+        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        SignIn signIn= objectMapper.convertValue(credentialsMap,SignIn.class);
+        generateToken(signIn.getUsername(),signIn.getPassword(),signIn.getDeviceServiceId());
+    }
     @Then("Status code {int} is returned")
     public void statusCodeIsReturned(int statusCode) {
         Response response = helper.getLatestResponse();

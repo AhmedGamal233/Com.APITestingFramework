@@ -6,16 +6,22 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import io.restassured.response.Response;
 import lombok.SneakyThrows;
 import org.junit.Test;
+import pojos.pojoRequests.Accounts.SignIn;
 import pojos.pojoRequests.Create_UpdateUserRequest;
+import pojos.pojoResponses.AccountsRes.SignInRes;
 import pojos.pojoResponses.userCreation.CreatedUser;
 import pojos.pojoResponses.userCreation.UpdatedUser;
 import pojos.pojoResponses.usersAtSpecificPage.UsersPage;
 import stepDefinition.ApiBaseTest;
 
+import static pojos.pojoResponses.AccountsRes.SignInRes.accessToken;
+
 public class TestClass extends ApiBaseTest {
-public  CreatedUser createdUser;
-public Create_UpdateUserRequest createUpdateUserRequest;
-public UpdatedUser updatedUser;
+    public  CreatedUser createdUser;
+    public Create_UpdateUserRequest createUpdateUserRequest;
+    public UpdatedUser updatedUser;
+
+
 
 
     @SneakyThrows
@@ -25,11 +31,11 @@ public UpdatedUser updatedUser;
         createUpdateUserRequest.setName("kaka");
         createUpdateUserRequest.setJob("KAKA land owner");
         Response response=requests.createUser(objectMapper.writeValueAsString(createUpdateUserRequest));
-   //     ApiAssertions.assertStatusCodeIs_200(response);
+        //     ApiAssertions.assertStatusCodeIs_200(response);
         objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         createdUser= objectMapper.readValue(response.prettyPrint(),CreatedUser.class);
-       //OR
-       // createdUser =response.as(CreatedUser.class);
+        //OR
+        // createdUser =response.as(CreatedUser.class);
         System.out.println(createdUser.getId());
         System.out.println(createdUser.getCreatedAt());
 
@@ -37,7 +43,7 @@ public UpdatedUser updatedUser;
     @Test
     public void checkGetAllUsersFromSpecificPage()
     {
-       Response response= requests.RestGetAllUsersRequest(2);
+        Response response= requests.RestGetAllUsersRequest(2);
         ApiActions.ApiBodyLogs(response);
         ApiAssertions.assertStatusCodeIs_200(response);
         UsersPage usersPage=response.as(UsersPage.class);
@@ -51,10 +57,27 @@ public UpdatedUser updatedUser;
 
     @Test
     public void updateUser(){
-      //  Create_UpdateUserRequest createUpdateUserRequest =new Create_UpdateUserRequest();
+        //  Create_UpdateUserRequest createUpdateUserRequest =new Create_UpdateUserRequest();
         createUpdateUserRequest.setName("koko");
         createUpdateUserRequest.setJob("koko land owner");
         Response response=requests.updateUser(createUpdateUserRequest,createdUser.getId());
-         updatedUser =response.as(UpdatedUser.class);
+        updatedUser =response.as(UpdatedUser.class);
+    }
+
+    @SneakyThrows
+    @Test
+    public void signIn_signOut(){
+        signIn =new SignIn();
+        signInRes =new SignInRes();
+        signIn.setUsername("msa@mimonote.com");
+        signIn.setPassword("123456@a");
+        signIn.set_comment("username and password are mandatory");
+        signIn.setDeviceServiceId("string");
+        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        Response response=authApis.signIn(objectMapper.writeValueAsString(signIn));
+        helper.setLatestResponse(response);
+        signInRes= objectMapper.readValue(helper.getLatestResponse().prettyPrint(), SignInRes.class);
+        accessToken =signInRes.getToken();
+        authApis.signOut();
     }
 }

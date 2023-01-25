@@ -10,6 +10,7 @@ public enum API_Resources {
     USERS("api/users"),
     SPECIFIC_USERS("api/users/{id}"),
     SIGN_IN("/SignIn"),
+    SIGN_OUT("/SignOut"),
     FORGET_PASSWORD("/ForgetPassword"),
     CHANGE_PASSWORD("/ChangeForgottenPassword"),
     SIGN_UP("/SignUp"),

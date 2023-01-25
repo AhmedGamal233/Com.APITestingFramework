@@ -46,19 +46,25 @@ public class ApiActions {
         return method;
     }
     public static Response PostRequest(RequestSpecification requestSpecification,Object body,Method method,String endPoint){
-         return requestSpecification.body(body).request(SpecifyHTTPMethod(method),endPoint).then().log().all().extract().response();
+        return requestSpecification.body(body).request(SpecifyHTTPMethod(method),endPoint).then().log().all().extract().response();
 
     }
 
     public static Response PutRequest(RequestSpecification requestSpecification,Object body, String paramKey , String paramValue, Method method,String endPoint){
         return requestSpecification.body(body).pathParam(paramKey,paramValue).request(SpecifyHTTPMethod(method),endPoint).then().log().all().extract().response();
     }
+    public static Response PutRequest(RequestSpecification requestSpecification,Object body, Method method,String endPoint){
+        return requestSpecification.body(body).request(SpecifyHTTPMethod(method),endPoint).then().log().all().extract().response();
+    }
 
-    public static Response DeleteRequest(RequestSpecification requestSpecification ,String paramKey , String paramValue, Method method,String endPoint){
-        return requestSpecification.pathParam(paramKey,paramValue).request(SpecifyHTTPMethod(method),endPoint).then().log().all().extract().response();
+    public static Response DeleteRequest(RequestSpecification requestSpecification , Method method,String endPoint){
+        return requestSpecification.request(SpecifyHTTPMethod(method),endPoint).then().log().all().extract().response();
+    }
+    public static Response GetRequest(RequestSpecification requestSpecification, Method method,String endPoint){
+        return requestSpecification.request(SpecifyHTTPMethod(method),endPoint).then().log().all().extract().response();
     }
     public static Response getRequestWithRedirection(RequestSpecification requestSpecification ,String paramKey , String paramValue, Method method,String endPoint) {
-      return requestSpecification.redirects().follow(false).filter(filter).pathParam(paramKey,paramValue).request(SpecifyHTTPMethod(method),endPoint).then().log().all().extract().response();
+        return requestSpecification.redirects().follow(false).filter(filter).pathParam(paramKey,paramValue).request(SpecifyHTTPMethod(method),endPoint).then().log().all().extract().response();
     }
     public static Response RequestWithQueryParameter(RequestSpecification requestSpecification, String paramKey , int paramValue, Method method , String endPoint)
     {
@@ -66,7 +72,7 @@ public class ApiActions {
     }
     public static Response RequestWithQueryParameter(RequestSpecification requestSpecification, String paramKey , String paramValue, Method method , String endPoint)
     {
-       return requestSpecification.queryParam(paramKey, paramValue).request(SpecifyHTTPMethod(method), endPoint);
+        return requestSpecification.queryParam(paramKey, paramValue).request(SpecifyHTTPMethod(method), endPoint);
     }
     public static Response RequestWithMultiQueryParameter(RequestSpecification requestSpecification, String paramKey , Collection pramValues, Method method , String endPoint)
     {
@@ -133,7 +139,7 @@ public class ApiActions {
     }
     public String getJsonPath(Object body) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-       return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(body);
+        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(body);
     }
     public void decodeToken(Response response) throws IOException {
         String[] dotSplitedJWT = response.jsonPath().get("id_token").toString().split("\\.");
