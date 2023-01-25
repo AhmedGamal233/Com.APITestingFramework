@@ -34,11 +34,6 @@ public class Demo {
      helper.getLatestResponse().prettyPrint();
     }
 
-    @Then("Status code {int} is returned")
-    public void statusCodeIsReturned(int arg0) {
-
-    }
-
     @When("i call login API for {string} user")
     public void iCallLoginAPIForUserUser() {
     }
