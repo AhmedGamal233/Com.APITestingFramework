@@ -30,7 +30,7 @@ public class NoteCategorySteps {
     @SneakyThrows
     @When("note categories has items")
     public void noteCategoriesHasItems() {
-        UserNoteCategories userNoteCategories =objectMapper.readValue(helper.getLatestResponse().prettyPrint(), UserNoteCategories.class);
+        userNoteCategories =objectMapper.readValue(helper.getLatestResponse().prettyPrint(), UserNoteCategories.class);
         userNoteCategories.getItems().forEach(item -> System.out.println(item.getNoteCategoryId()));
     }
 
