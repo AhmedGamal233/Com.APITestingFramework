@@ -62,10 +62,6 @@ public class Demo {
     public void iGetValidUserCode() {
     }
 
-    @Then("i generate user tokens")
-    public void iGenerateUserTokens() {
-    }
-
     @And("Store values from response")
     public void storeValuesFromResponse() {
     }
