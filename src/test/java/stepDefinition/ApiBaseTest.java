@@ -5,6 +5,7 @@ import apiRequests.Authentication.AuthApis;
 import apiRequests.userContent.userNoteCategories.UserNoteCategoriesRequests;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import helper.Helper;
 import io.cucumber.java.Before;
 import io.restassured.RestAssured;
@@ -67,7 +68,7 @@ public class ApiBaseTest {
             PrintStream stream = new PrintStream(new FileOutputStream("API_logs.txt"));
             //    requestSpecification= RestAssured.given().baseUri(baseUri).contentType(ContentType.JSON);
             requestSpecificationBuilder = new RequestSpecBuilder()
-                    .setBaseUri("https://reqres.in/")
+                    .setBaseUri("put your base uri here")
                     .setContentType(ContentType.JSON)
                     // .addHeader("ContentType", String.valueOf(ContentType.JSON))
                     .addFilter(RequestLoggingFilter.logRequestTo(stream))
@@ -79,6 +80,10 @@ public class ApiBaseTest {
         authApis = new AuthApis(requestSpecification);
         userNoteCategoriesRequests = new UserNoteCategoriesRequests(requestSpecification);
         helper = new Helper();
+        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
+        // objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
     @SneakyThrows
     public static void generateToken(String username,String password,String DeviceServiceId) {
@@ -86,7 +91,7 @@ public class ApiBaseTest {
         signIn.setUsername(username);
         signIn.setPassword(password);
         signIn.setDeviceServiceId(DeviceServiceId);
-        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+       // objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         Response response=authApis.signIn(objectMapper.writeValueAsString(signIn));
         helper.setLatestResponse(response);
         signInRes= objectMapper.readValue(helper.getLatestResponse().prettyPrint(), SignInRes.class);

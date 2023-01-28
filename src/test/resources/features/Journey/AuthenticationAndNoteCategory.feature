@@ -25,7 +25,6 @@ Feature: Verify user login properties and context endpoints
     Then Verify following fields
       | items | isNotNull |  |
       | items | arrayWithSize |20|
-    Then check each item values
 
 
 

@@ -31,12 +31,7 @@ public class NoteCategorySteps {
     @When("note categories has items")
     public void noteCategoriesHasItems() {
         userNoteCategories =objectMapper.readValue(helper.getLatestResponse().prettyPrint(), UserNoteCategories.class);
-        userNoteCategories.getItems().forEach(item -> System.out.println(item.getNoteCategoryId()));
-    }
-
-    @Then("check each item values")
-    public void checkEachItemValues() {
+     //   userNoteCategories.getItems().forEach(item -> System.out.println(item.getNoteCategoryId()));
         userNoteCategories.getItems().forEach(item -> assertThat(item.getNoteCategoryId(), notNullValue()));
-        //assert each object in item json object with same line
     }
 }
