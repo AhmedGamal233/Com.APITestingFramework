@@ -1,5 +1,5 @@
 package api_Actions_And_Assertion;
-
+import pojos.pojoRequests.DecodedToken;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.builder.RequestSpecBuilder;
@@ -12,7 +12,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.apache.commons.codec.Charsets;
 import org.apache.commons.codec.binary.Base64;
-import pojos.pojoRequests.DecodedToken;
+
 
 import java.io.IOException;
 import java.util.Collection;

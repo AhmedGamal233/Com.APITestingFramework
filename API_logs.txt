@@ -1,5 +1,5 @@
 Request method:	POST
-Request URI:	https://reqres.in/api/users
+Request URI:	https://app-api-mimo-reloaded-gateway-dev.azurewebsites.net/SignIn
 Proxy:			<none>
 Request params:	<none>
 Query params:	<none>
@@ -11,27 +11,63 @@ Cookies:		<none>
 Multiparts:		<none>
 Body:
 {
-    "name": "kaka",
-    "job": "KAKA land owner"
+    "username": "msa@mimonote.com",
+    "password": "123456@a",
+    "deviceServiceId": "string",
+    "_comment": null
 }
-HTTP/1.1 201 Created
-Date: Fri, 02 Dec 2022 03:02:59 GMT
+HTTP/1.1 200 OK
+Content-Length: 527
 Content-Type: application/json; charset=utf-8
-Content-Length: 89
-Connection: keep-alive
-X-Powered-By: Express
-Access-Control-Allow-Origin: *
-Etag: W/"59-ztnIdTgD5CUr49vkW5qa5Me81bg"
-Via: 1.1 vegur
-CF-Cache-Status: DYNAMIC
-Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Tyo4yKSXYzHx4Ekk2mww8u91JLSVw3kVyoKAlhqPToMi3KuhWXiexCv6l7o3TuUxyhGVM3spkuNNLpUY4pGxHOIR1aoYPgxZw0RR%2Bim4iqX%2BYbw3XUeJM%2BhpMg%3D%3D"}],"group":"cf-nel","max_age":604800}
-NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
-Server: cloudflare
-CF-RAY: 7730d3adbdf00c51-MRS
+Date: Thu, 16 Feb 2023 05:54:25 GMT
+Server: Microsoft-IIS/10.0
+Content-Encoding: gzip
+Set-Cookie: ARRAffinity=22a7daa836b64a8ce56c907737553d08297ff2e76cd06a1f52c29956b9a85c17;Path=/;HttpOnly;Secure;Domain=app-api-mimo-reloaded-accounts-dev.azurewebsites.net
+Set-Cookie: ARRAffinitySameSite=22a7daa836b64a8ce56c907737553d08297ff2e76cd06a1f52c29956b9a85c17;Path=/;HttpOnly;SameSite=None;Secure;Domain=app-api-mimo-reloaded-accounts-dev.azurewebsites.net
+Set-Cookie: ARRAffinity=79e06db539acb57119e709978d2cf1da299e8341753d6f6345007fcab3f69bc5;Path=/;HttpOnly;Secure;Domain=app-api-mimo-reloaded-gateway-dev.azurewebsites.net
+Set-Cookie: ARRAffinitySameSite=79e06db539acb57119e709978d2cf1da299e8341753d6f6345007fcab3f69bc5;Path=/;HttpOnly;SameSite=None;Secure;Domain=app-api-mimo-reloaded-gateway-dev.azurewebsites.net
+Vary: Accept-Encoding
+Request-Context: appId=
+X-Powered-By: ASP.NET
+X-Powered-By: ASP.NET
 
 {
-    "name": "kaka",
-    "job": "KAKA land owner",
-    "id": "896",
-    "createdAt": "2022-12-02T03:02:59.528Z"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTZXNzaW9uSWQiOiI1WUdrRFZDV05ZdmlPczdxNm1xYVp2ZWRKekNnbEpQVU1WU1NEanN1SFlyNC1GUjJIZWpLdkxoZW4tYVhid3dtV0NuQzg2aklaS2lyN21oTTFlc0YwRnN5MGdCUmtYZVlaVVpaT211aFpxbz0iLCJqdGkiOiJkYTc0N2Y0ZC1lZTE5LTRlNzYtODE1Ni0yODUzNGYyNzdiZDQiLCJleHAiOjE2NzY3ODYwNjV9.WY6fL2diU_1tTTL_PN_mCOxu8ypvJRAR47r-tlpCJUU",
+    "expiration": "2023-02-19T05:54:25.757452Z"
 }
+Request method:	GET
+Request URI:	https://app-api-mimo-reloaded-gateway-dev.azurewebsites.net/NoteCategories?parentNoteCategoryId=0&pageIndex=10&name=a&pageSize=20&noteTypeId=0&defParentNoteCategoryId=0&defNoteTypeId=0
+Proxy:			<none>
+Request params:	<none>
+Query params:	parentNoteCategoryId=0
+				pageIndex=10
+				name=a
+				pageSize=20
+				noteTypeId=0
+				defParentNoteCategoryId=0
+				defNoteTypeId=0
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTZXNzaW9uSWQiOiI1WUdrRFZDV05ZdmlPczdxNm1xYVp2ZWRKekNnbEpQVU1WU1NEanN1SFlyNC1GUjJIZWpLdkxoZW4tYVhid3dtV0NuQzg2aklaS2lyN21oTTFlc0YwRnN5MGdCUmtYZVlaVVpaT211aFpxbz0iLCJqdGkiOiJkYTc0N2Y0ZC1lZTE5LTRlNzYtODE1Ni0yODUzNGYyNzdiZDQiLCJleHAiOjE2NzY3ODYwNjV9.WY6fL2diU_1tTTL_PN_mCOxu8ypvJRAR47r-tlpCJUU
+				Content-Type=application/json; charset=UTF-8
+Cookies:		<none>
+Multiparts:		<none>
+Body:
+{
+    "username": "msa@mimonote.com",
+    "password": "123456@a",
+    "deviceServiceId": "string",
+    "_comment": null
+}
+HTTP/1.1 500 Internal Server Error
+Content-Length: 0
+Date: Thu, 16 Feb 2023 05:54:26 GMT
+Server: Microsoft-IIS/10.0
+Set-Cookie: ARRAffinity=92ca53ad8db4fbb93d4d3b7d8ab54dcf8ffecb2d731f25b0e91ad575d7534c3f;Path=/;HttpOnly;Secure;Domain=app-api-mimo-reloaded-contents-dev.azurewebsites.net
+Set-Cookie: ARRAffinitySameSite=92ca53ad8db4fbb93d4d3b7d8ab54dcf8ffecb2d731f25b0e91ad575d7534c3f;Path=/;HttpOnly;SameSite=None;Secure;Domain=app-api-mimo-reloaded-contents-dev.azurewebsites.net
+Set-Cookie: ARRAffinity=79e06db539acb57119e709978d2cf1da299e8341753d6f6345007fcab3f69bc5;Path=/;HttpOnly;Secure;Domain=app-api-mimo-reloaded-gateway-dev.azurewebsites.net
+Set-Cookie: ARRAffinitySameSite=79e06db539acb57119e709978d2cf1da299e8341753d6f6345007fcab3f69bc5;Path=/;HttpOnly;SameSite=None;Secure;Domain=app-api-mimo-reloaded-gateway-dev.azurewebsites.net
+Request-Context: appId=
+X-Powered-By: ASP.NET
+X-Powered-By: ASP.NET

@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75421c1f-9af2-4197-bd4b-14a832ccf347" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/Configs/configs.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_logs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/API_logs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Com.APITestingFramework.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Com.APITestingFramework.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api_Actions_And_Assertion/ApiActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api_Actions_And_Assertion/ApiActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/features/Journey/Sample.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/stepDefinition/ApiBaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/stepDefinition/ApiBaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/stepDefinition/CommonSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/stepDefinition/CommonSteps.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,19 +40,38 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="2Kk3g2iUN8b6GOcciS2vNa71RYq" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "/Users/ahmed-abdelhaliem/Documents/GitHub/Com.APITestingFramework",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/resources/Configs" />
+      <recent name="$PROJECT_DIR$/src/test/resources" />
+      <recent name="$PROJECT_DIR$/src/test/resources/features" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Cucumber Java.Scenario: verify Note Categories items">
     <configuration name="Feature: AuthenticationAndNoteCategory" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="5" />
       <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/resources/features/Journey/AuthenticationAndNoteCategory.feature" />
@@ -66,8 +91,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Scenario: verify Note Categories items" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="5" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/resources/features/Journey/AuthenticationAndNoteCategory.feature" />
+      <option name="GLUE" value="stepDefinition" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="Com.APITestingFramework" />
+      <option name="NAME_FILTER" value="^verify Note Categories items$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^verify Note Categories items$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: verify Note Categories items" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Cucumber Java.Scenario: verify Note Categories items" />
         <item itemvalue="Cucumber Java.Feature: AuthenticationAndNoteCategory" />
       </list>
     </recent_temporary>
@@ -93,5 +139,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

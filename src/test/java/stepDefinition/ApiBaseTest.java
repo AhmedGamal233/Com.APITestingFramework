@@ -14,23 +14,19 @@ import io.restassured.filter.cookie.CookieFilter;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
-import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import lombok.SneakyThrows;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.BeforeClass;
 import pojos.pojoRequests.Accounts.SignIn;
 import pojos.pojoResponses.AccountsRes.SignInRes;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.*;
 
 import static io.restassured.RestAssured.given;
 import static pojos.pojoResponses.AccountsRes.SignInRes.accessToken;
@@ -50,6 +46,9 @@ public class ApiBaseTest {
 
     public static Helper helper;
 
+    public static int hitResult;
+    public static boolean expired;
+
 
 
     @Before()
@@ -68,7 +67,7 @@ public class ApiBaseTest {
             PrintStream stream = new PrintStream(new FileOutputStream("API_logs.txt"));
             //    requestSpecification= RestAssured.given().baseUri(baseUri).contentType(ContentType.JSON);
             requestSpecificationBuilder = new RequestSpecBuilder()
-                    .setBaseUri("put your base uri here")
+                    .setBaseUri("https://app-api-mimo-reloaded-gateway-dev.azurewebsites.net/")
                     .setContentType(ContentType.JSON)
                     // .addHeader("ContentType", String.valueOf(ContentType.JSON))
                     .addFilter(RequestLoggingFilter.logRequestTo(stream))
@@ -86,7 +85,7 @@ public class ApiBaseTest {
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
     @SneakyThrows
-    public static void generateToken(String username,String password,String DeviceServiceId) {
+    public static int generateToken(String username,String password,String DeviceServiceId) {
         signIn=new SignIn();
         signIn.setUsername(username);
         signIn.setPassword(password);
@@ -96,6 +95,11 @@ public class ApiBaseTest {
         helper.setLatestResponse(response);
         signInRes= objectMapper.readValue(helper.getLatestResponse().prettyPrint(), SignInRes.class);
         accessToken =signInRes.getToken();
+        setToken();
+       // String expireDate =signInRes.getExpiration();
+         expired = Instant.parse(getConfigs("expirationDate")).isBefore(new Date().toInstant());
+//         System.out.println("value is "+expired +new Date().toInstant().toString());
+       return helper.getLatestResponse().getStatusCode();
     }
 
 
@@ -139,5 +143,50 @@ public class ApiBaseTest {
     private void setBaseUri(String host) {
         RestAssured.baseURI = host;
         log.info("RestAssured.baseURI = {}" , RestAssured.baseURI);
+    }
+
+
+    public static String getConfigs(String propName) {
+
+        String filePath = "src/test/resources/Configs/configs.properties";
+        File file = new File(filePath);
+        FileReader reader = null;
+        try {
+            reader = new FileReader(file);
+        } catch (FileNotFoundException e1) {
+            System.out.println("file not found");
+            e1.printStackTrace();
+        }
+        Properties prop = new Properties();
+        try {
+            prop.load(reader);
+        } catch (IOException e) {
+            System.out.println("file not read");
+            e.printStackTrace();
+        }
+        return prop.getProperty(propName);
+    }
+    public  static void setToken() throws IOException {
+        String filePath = "src/test/resources/Configs/configs.properties";
+        File file = new File(filePath);
+        FileReader reader = null;
+        try {
+            reader = new FileReader(file);
+        } catch (FileNotFoundException e1) {
+            System.out.println("file not found");
+            e1.printStackTrace();
+        }
+        Properties prop = new Properties();
+        try {
+            prop.load(reader);
+        } catch (IOException e) {
+            System.out.println("file not read");
+            e.printStackTrace();
+        }
+        prop.setProperty("Token",accessToken);
+        FileOutputStream out = new FileOutputStream(filePath);
+        prop.store(out, null);
+        out.close();
+        System.out.println(prop.getProperty("Token"));
     }
 }

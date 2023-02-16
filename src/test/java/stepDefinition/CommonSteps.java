@@ -9,6 +9,7 @@ import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.response.Response;
 import pojos.pojoRequests.Accounts.SignIn;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,16 +18,26 @@ import static helper.Helper.performValidations;
 import static java.util.Arrays.asList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static pojos.pojoResponses.AccountsRes.SignInRes.accessToken;
 import static stepDefinition.ApiBaseTest.*;
 
 public class CommonSteps {
     @Given("i generate user tokens")
-    public void iGenerateUserTokens(DataTable dataTable) {
+    public void iGenerateUserTokens(DataTable dataTable) throws ParseException {
         Map<String, String> credentialsMap =new HashMap<>();
         credentialsMap.putAll(dataTable.asMap(String.class, String.class));
         objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         SignIn signIn= objectMapper.convertValue(credentialsMap,SignIn.class);
-        generateToken(signIn.getUsername(),signIn.getPassword(),signIn.getDeviceServiceId());
+        System.out.println(expired);
+
+        hitResult =generateToken(signIn.getUsername(),signIn.getPassword(),signIn.getDeviceServiceId());
+        if(hitResult!=200){
+            accessToken= getConfigs("Token");
+        }
+        if(expired==true){
+            hitResult =generateToken(signIn.getUsername(),signIn.getPassword(),signIn.getDeviceServiceId());
+        }
+
     }
     @Then("Status code {int} is returned")
     public void statusCodeIsReturned(int statusCode) {
